@@ -1,15 +1,33 @@
 fun main() {
+
     fun part1(input: List<String>): Int {
-        return input.size
+        var count = 0
+        var index = 0
+        val length = input.size
+        for (value in input) {
+            if (index == length - 1) {
+                break
+            }
+            if (input[index].toInt() < input[index + 1].toInt()) count++
+            index++
+        }
+        return count
     }
 
     fun part2(input: List<String>): Int {
-        return input.size
+        var index = 0
+        val length = input.size
+        val inputWithSums = mutableListOf<String>()
+        for (value in input) {
+            if (index == length - 2) {
+                break
+            }
+            val sum = input[index].toInt() + input[index + 1].toInt() + input[index + 2].toInt()
+            inputWithSums.add(sum.toString())
+            index++
+        }
+        return part1(inputWithSums)
     }
-
-    // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
 
     val input = readInput("Day01")
     println(part1(input))
